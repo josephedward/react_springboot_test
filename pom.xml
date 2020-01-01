@@ -1,52 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	
 	<modelVersion>
 		4.0.0
 	</modelVersion>
-	
 	<groupId>
 		java.m1
 	</groupId>
-	
 	<artifactId>
 		react-java-test_1
 	</artifactId>
-	
 	<version>
 		1
 	</version>
-	
 	<packaging>
 		jar
 	</packaging>
-	
 	<parent>
-	
 		<groupId>
 			org.springframework.boot
 		</groupId>
-	
 		<artifactId>
 			spring-boot-starter-parent
 		</artifactId>
-	
 		<version>
 			1.5.2.RELEASE
 		</version>
-	
 	</parent>
-	
 	<properties>
-	
 		<java.version>
 			1.8
 		</java.version>
-	
 	</properties>
-	
 	<dependencies>
-
 		<dependency>
 			<groupId>
 				org.springframework.boot
@@ -55,46 +40,37 @@
 				spring-boot-starter-web
 			</artifactId>
 		</dependency>
-	
 	</dependencies>
-	
 	<build>
-	
 		<plugins>
-	
 			<plugin>
-	
 				<groupId>
 					org.springframework.boot
 				</groupId>
-	
 				<artifactId>
 					spring-boot-maven-plugin
 				</artifactId>
-	
 			</plugin>
-	
 			<plugin>
-	
-					<groupId>
-						com.heroku.sdk
-					</groupId>
-	
-					<artifactId>
-						heroku-maven-plugin
-					</artifactId>
-                                             <version>2.0.13</version>
-					<configuration>
-	
-						<appName>
-							${heroku.frozen-caverns-46133}
-						</appName>
-						<processTypes>
-							<web>
-								java $JAVA_OPTS -cp target/classes:target/dependency/* Main
-							</web>
-						</processTypes>
-					</configuration>
+				<groupId>
+					com.heroku.sdk
+				</groupId>
+				<artifactId>
+					heroku-maven-plugin
+				</artifactId>
+				<version>
+					2.0.13
+				</version>
+				<configuration>
+					<appName>
+						${heroku.frozen-caverns-46133}
+					</appName>
+					<processTypes>
+						<web>
+							java $JAVA_OPTS -cp target/classes:target/dependency/* Main
+						</web>
+					</processTypes>
+				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>
