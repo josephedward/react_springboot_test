@@ -1,119 +1,182 @@
-
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-
-    <groupId>com.test.react_java_1</groupId>
-    <artifactId>react-java-test_1</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-
-
- <packaging>jar</packaging>
-
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.5.2.RELEASE</version>
-    </parent>
-
-
- <properties>
-  <java.version>1.8</java.version>
- </properties>
-
-     <dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-    </dependencies>
-
-
-
-
-<build>
- <plugins>
-  <plugin>
-   <groupId>org.springframework.boot</groupId>
-   <artifactId>spring-boot-maven-plugin</artifactId>
-  </plugin>
-  <plugin>
-   <groupId>com.github.eirslett</groupId>
-   <artifactId>frontend-maven-plugin</artifactId>
-   <version>1.4</version>
-   <executions>
-    <execution>
-     <id>Install node and npm locally to the project</id>
-     <goals>
-      <goal>install-node-and-npm</goal>
-     </goals>
-     <configuration>
-      <nodeVersion>v11.15.0</nodeVersion>
-      <npmVersion>6.12.1</npmVersion>
-     </configuration>
-    </execution>
-
-    <execution>
-     <id>npm install</id>
-     <goals>
-      <goal>npm</goal>
-     </goals>
-    </execution>
-
-    <!-- Can I comment out in XML? -->
-    <!-- Need startup to call preflight -->
-    <!-- Dont think this even did anything -->
-    <!-- <execution>
-        <id>Clear Ports on Restart</id>
-        <goals>
-      <goal>sudo</goal>
-     </goals>
-     <configuration>
-      <arguments>./scripts/prefligh.sh</arguments>
-     </configuration>
-    </execution> -->
-
-
-
-    <execution>
-     <id>Build frontend</id>
-     <goals>
-      <goal>npm</goal>
-     </goals>
-     <configuration>
-      <arguments>run build</arguments>
-     </configuration>
-    </execution>
-   </executions>
-  </plugin>
-
-<plugin>
-   <groupId>org.apache.maven.plugins</groupId>
-   <artifactId>maven-resources-plugin</artifactId>
-   <executions>
-    <execution>
-     <id>Copy frontend build to target</id>
-     <phase>process-resources</phase>
-     <goals>
-      <goal>copy-resources</goal>
-     </goals>
-     <configuration>
-      <outputDirectory>${basedir}/target/classes/resources</outputDirectory>
-      <resources>
-       <resource>
-        <directory>${basedir}/build</directory>
-        <filtering>true</filtering>
-       </resource>
-      </resources>
-     </configuration>
-    </execution>
-   </executions>
-  </plugin>
-
- </plugins>
-</build>
-
-
-    
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>
+		4.0.0
+	</modelVersion>
+	<groupId>
+		com.test.react_java_1
+	</groupId>
+	<artifactId>
+		react-java-test_1
+	</artifactId>
+	<version>
+		0.0.1-SNAPSHOT
+	</version>
+	<packaging>
+		jar
+	</packaging>
+	<parent>
+		<groupId>
+			org.springframework.boot
+		</groupId>
+		<artifactId>
+			spring-boot-starter-parent
+		</artifactId>
+		<version>
+			1.5.2.RELEASE
+		</version>
+	</parent>
+	<properties>
+		<java.version>
+			1.8
+		</java.version>
+	</properties>
+	<dependencies>
+		<dependency>
+			<groupId>
+				org.springframework.boot
+			</groupId>
+			<artifactId>
+				spring-boot-starter-web
+			</artifactId>
+		</dependency>
+	</dependencies>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>
+					org.springframework.boot
+				</groupId>
+				<artifactId>
+					spring-boot-maven-plugin
+				</artifactId>
+			</plugin>
+			<plugin>
+					<groupId>
+						com.heroku.sdk
+					</groupId>
+					<artifactId>
+						heroku-maven-plugin
+					</artifactId>
+					<configuration>
+						<appName>
+							${heroku.frozen-caverns-46133}
+						</appName>
+						<processTypes>
+							<web>
+								java $JAVA_OPTS -cp target/classes:target/dependency/* Main
+							</web>
+						</processTypes>
+					</configuration>
+			</plugin>
+			<plugin>
+				<groupId>
+					com.github.eirslett
+				</groupId>
+				<artifactId>
+					frontend-maven-plugin
+				</artifactId>
+				<version>
+					1.4
+				</version>
+				<executions>
+					<execution>
+						<id>
+							Install node and npm locally to the project
+						</id>
+						<goals>
+							<goal>
+								install-node-and-npm
+							</goal>
+						</goals>
+						<configuration>
+							<nodeVersion>
+								v11.15.0
+							</nodeVersion>
+							<npmVersion>
+								6.12.1
+							</npmVersion>
+						</configuration>
+					</execution>
+					<execution>
+						<id>
+							npm install
+						</id>
+						<goals>
+							<goal>
+								npm
+							</goal>
+						</goals>
+					</execution>
+					<!-- Can I comment out in XML? -->
+					<!-- Need startup to call preflight -->
+					<!-- Dont think this even did anything -->
+					<!--
+					<execution>
+					<id>Clear Ports on Restart</id>
+					<goals>
+					<goal>sudo</goal>
+					</goals>
+					<configuration>
+					<arguments>./scripts/prefligh.sh</arguments>
+					</configuration>
+					</execution>
+					-->
+					<execution>
+						<id>
+							Build frontend
+						</id>
+						<goals>
+							<goal>
+								npm
+							</goal>
+						</goals>
+						<configuration>
+							<arguments>
+								run build
+							</arguments>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>
+					org.apache.maven.plugins
+				</groupId>
+				<artifactId>
+					maven-resources-plugin
+				</artifactId>
+				<executions>
+					<execution>
+						<id>
+							Copy frontend build to target
+						</id>
+						<phase>
+							process-resources
+						</phase>
+						<goals>
+							<goal>
+								copy-resources
+							</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>
+								${basedir}/target/classes/resources
+							</outputDirectory>
+							<resources>
+								<resource>
+									<directory>
+										${basedir}/build
+									</directory>
+									<filtering>
+										true
+									</filtering>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
 </project>
