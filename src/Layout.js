@@ -18,4 +18,4 @@ class Layout extends Component {
 }
 
 
-export default Main;
+export default Layout;
