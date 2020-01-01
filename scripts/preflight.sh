@@ -14,5 +14,5 @@ sudo lsof -i tcp:3000
 echo 'ports test(8080) :'
 sudo lsof -i tcp:8080 
 
-sudo mvn clean package
+sudo mvn clean  -X
  
